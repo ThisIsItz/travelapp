@@ -3,16 +3,28 @@ import {checkForURL} from "./urlChecker";
 function handleSubmit(event) {
     event.preventDefault()
 
-    // check what text was put into the form field
     let formText = document.getElementById('name').value
     checkForURL(formText)
 
-    console.log("::: Form Submitted :::")
-    fetch('http://localhost:8080/test')
-    .then(res => res.json())
-    .then(function(res) {
-        document.getElementById('results').innerHTML = res.message
-    })
+    const getData = async (url = 'http://localhost:8080/test', data = {}) => {
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type' : 'application/json',
+                'Accept' : 'application/json'
+            },
+            body: JSON.stringify(data)
+        });
+
+        try {
+            const newData = await response.json();
+            return newData
+            console.log(newData)
+        } catch(error) {
+            console.log('error',error);
+        }
+    }
+    getData();
 }
 
 export { handleSubmit }

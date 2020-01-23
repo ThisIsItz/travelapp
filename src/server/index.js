@@ -33,6 +33,12 @@ app.listen(3000, function () {
     console.log('Example app listening on port 3000!')
 })
 
-app.get('/test', function (req, res) {
-    res.send(mockAPIResponse)
+app.post('/test', function (req, res) {
+    textapi.sentiment({
+        url: 'http://www.google.es'
+      }, function(error, response) {
+        if (error === null) {
+          console.log(response);
+        }
+      });
 })
