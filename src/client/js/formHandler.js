@@ -1,11 +1,11 @@
-import {checkForName} from "./nameChecker";
+import {checkForURL} from "./urlChecker";
 
 function handleSubmit(event) {
     event.preventDefault()
 
     // check what text was put into the form field
     let formText = document.getElementById('name').value
-    checkForName(formText)
+    checkForURL(formText)
 
     console.log("::: Form Submitted :::")
     fetch('http://localhost:8080/test')
