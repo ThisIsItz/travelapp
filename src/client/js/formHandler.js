@@ -24,7 +24,7 @@ function handleSubmit(event) {
             console.log('error',error);
         }
     }
-    getData();
+    getData(undefined, {url: formText});
 }
 
 export { handleSubmit }

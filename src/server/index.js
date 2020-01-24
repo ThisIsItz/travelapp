@@ -34,11 +34,16 @@ app.listen(3000, function () {
 })
 
 app.post('/test', function (req, res) {
-    textapi.sentiment({
-        url: 'http://www.google.es'
+    console.log(req.body)
+    return textapi.sentiment({
+        url: req.body.url
       }, function(error, response) {
-        if (error === null) {
-          console.log(response);
+        if(error){
+            console.log(error);
+            // throw new Error(error);
+            return
         }
+        console.log(response)
+        return res.send(response);
       });
 })
