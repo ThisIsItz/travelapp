@@ -7,6 +7,8 @@ var aylien = require("aylien_textapi");
 const dotenv = require('dotenv');
 dotenv.config({path: '../../.env'});
 
+let projectData = {};
+
 const app = express()
 
 app.use(express.static('dist'))
@@ -43,7 +45,12 @@ app.post('/test', function (req, res) {
             // throw new Error(error);
             return
         }
-        console.log(response)
-        return res.send(response);
-      });
-})
+            projectData['polarity'] = response.polarity;
+            projectData['subjectivity'] = response.subjectivity;
+            projectData['polarity_confidence'] = response.polarity_confidence;
+            projectData['subjectivity_confidence'] = response.subjectivity_confidence;
+            console.log(projectData)
+            return projectData;
+            });
+        response.send(projectData);
+    });

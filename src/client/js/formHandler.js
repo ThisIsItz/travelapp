@@ -4,27 +4,29 @@ function handleSubmit(event) {
     event.preventDefault()
 
     let formText = document.getElementById('name').value
+    let myForm = document.getElementById('form')
     checkForURL(formText)
 
     const getData = async (url = 'http://localhost:8080/test', data = {}) => {
-        const response = await fetch(url, {
+        let response = await fetch(url, {
             method: 'POST',
             headers: {
                 'Content-Type' : 'application/json',
-                'Accept' : 'application/json'
             },
             body: JSON.stringify(data)
         });
 
+        let newData = await response.json();
         try {
-            const newData = await response.json();
-            return newData
             console.log(newData)
+            document.getElementById('results').innerHTML = newData.polarity;
+            return newData
         } catch(error) {
             console.log('error',error);
         }
     }
     getData(undefined, {url: formText});
 }
+
 
 export { handleSubmit }

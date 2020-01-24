@@ -1,11 +1,10 @@
 function checkForURL(inputText) {
-    console.log("::: Running checkForName :::", inputText);
-    let Rgex = /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/gm;
-
+    let Rgex = RegExp('^(http|https):\/\/')
     if(Rgex.test(inputText)) {
-        return
+        return true
     } else {
-        alert("Please, insert a valid url");
+        alert("Please, insert a valid url. Need to start with http(s)://");
+        return false
     }
 }
 
