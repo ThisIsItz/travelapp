@@ -9,7 +9,6 @@ module.exports = {
       libraryTarget: 'var',
       library: 'Client'
     },
-    
     devServer: {
       proxy: {
         '/': 'http://localhost:3000'

@@ -7,7 +7,7 @@ function handleSubmit(event) {
     let myForm = document.getElementById('form')
     checkForURL(formText)
 
-    const getData = async (url = 'http://localhost:8080/test', data = {}) => {
+    const getData = async (url = 'http://localhost:3000/test', data = {}) => {
         let response = await fetch(url, {
             method: 'POST',
             headers: {
@@ -19,7 +19,7 @@ function handleSubmit(event) {
         let newData = await response.json();
         try {
             console.log(newData)
-            document.getElementById('results').innerHTML = newData.polarity;
+            document.getElementById('results').innerHTML = '<div><strong>Your results:</div>' + newData.polarity;
             return newData
         } catch(error) {
             console.log('error',error);

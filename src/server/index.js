@@ -50,7 +50,8 @@ app.post('/test', function (req, res) {
             projectData['polarity_confidence'] = response.polarity_confidence;
             projectData['subjectivity_confidence'] = response.subjectivity_confidence;
             console.log(projectData)
-            return projectData;
+            res.send(projectData);
             });
-        response.send(projectData);
+    
+        
     });
