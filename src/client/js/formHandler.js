@@ -19,7 +19,11 @@ function handleSubmit(event) {
         let newData = await response.json();
         try {
             console.log(newData)
-            document.getElementById('results').innerHTML = '<div><strong>Your results:</div>' + newData.polarity;
+            document.getElementById('results').innerHTML = `<div><strong>Your results: <br> <br>
+                                                            The polarity is: ${newData.polarity} <br>
+                                                            The subjectivity is: ${newData.subjectivity} <br>
+                                                            The polarity confidence is: ${newData.polarity_confidence} <br>
+                                                            The subjectivity confidence is: ${newData.subjectivity_confidence} </div>` 
             return newData
         } catch(error) {
             console.log('error',error);

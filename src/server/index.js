@@ -1,6 +1,5 @@
 var path = require('path')
 const express = require('express')
-const mockAPIResponse = require('./mockAPI.js')
 const cors = require('cors');
 const bodyParser = require('body-parser');
 var aylien = require("aylien_textapi");
@@ -51,7 +50,5 @@ app.post('/test', function (req, res) {
             projectData['subjectivity_confidence'] = response.subjectivity_confidence;
             console.log(projectData)
             res.send(projectData);
-            });
-    
-        
+            }); 
     });

@@ -1,5 +1,10 @@
-header {
+header, .text {
     display: flex;
     justify-content: space-between;
-    padding: 10px 40px;
+    padding: 30px 40px;
+    
+    .title{
+        font-weight: bold;
+    }
+    
 }
