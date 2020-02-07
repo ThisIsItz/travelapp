@@ -5,8 +5,8 @@ function handleSubmit(event) {
 
     let formText = document.getElementById('name').value
     let myForm = document.getElementById('form')
-    checkForURL(formText)
 
+    if (checkForURL(formText)) {
     const getData = async (url = 'http://localhost:3000/test', data = {}) => {
         let response = await fetch(url, {
             method: 'POST',
@@ -30,6 +30,9 @@ function handleSubmit(event) {
         }
     }
     getData(undefined, {url: formText});
+    document.getElementById('name').value = "";
+}
+    document.getElementById('name').value = "";
 }
 
 
