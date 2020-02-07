@@ -1,47 +1,41 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html>
 <head>
-  <meta charset="utf-8">
-  <title>NLP</title>
+<meta charset="UTF-8">
+<title>Travel App</title>
+<link rel="shortcut icon" href="https://img.icons8.com/android/24/000000/partly-cloudy-day.png">
+
+<link href="https://fonts.googleapis.com/css?family=Oswald:400,600,700|Ranga:400,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 </head>
+ <body>
+<div id = "app">
+  <div class ="holder headline">
+    <div>Travel App</div>
+    <div><img src="https://img.icons8.com/carbon-copy/100/000000/partly-cloudy-day.png"></div>
+  </div>
+  <div class ="holder zip">
+    <form class="" onsubmit="Client.handleSubmit(event)">
+      <label for="feelings">My trip</label>
+      <div id="location"></div>
+      <div id="dateres"></div>
+        <input id="name" type="text" name="input" value="" placeholder="Enter location">
+        <input id="date" type="date">
 
-<body>
+<p id="demo"></p>
+<p id="domo"></p>
 
-  <header>
-    <div class="title">
-      Natural Language Processing (NLP)
-    </div>
-  </header>
-
-  <div class="text">
-    <p>Insert an URL in the form below and you will get a short information about how the AI interprets the text.</p>
+<script>
+</script>
+        <input type="submit" name="" value="Submit" onclick="start()">
+      </form>
+  </div>
+  <div class ="holder entry">
+    <div class = "title">Most Recent Entry</div>
+   <div id = "results">
+  </div>
+  </div>
   </div>
 
-  <main>
-    <section>
-      <form class="" onsubmit="Client.handleSubmit(event)">
-        <input id="name" type="text" name="input" value="" placeholder="Please, enter an URL">
-        <input type="submit" name="" value="Submit">
-      </form>
-      <section>
-
-        <section>
-          <strong></strong>
-          <div id="results"></div>
-        </section>
-  </main>
-
-  <footer>
-    <p>This is a footer</p>
-  </footer>
-  <script>
-    // Check that service workers are supported
-    if ('serviceWorker' in navigator) {
-        // Use the window load event to keep the page load performant
-        window.addEventListener('load', () => {
-            navigator.serviceWorker.register('/service-worker.js');
-        });
-    }
-</script>
 </body>
 </html>

@@ -1,13 +1,13 @@
-import {checkForURL} from "./urlChecker";
+
+import { start } from "./countdown"
 
 function handleSubmit(event) {
     event.preventDefault()
 
-    let formText = document.getElementById('name').value
-    let myForm = document.getElementById('form')
+    let location = document.getElementById('name').value
+    let date = document.getElementById('date').value
 
-    if (checkForURL(formText)) {
-    const getData = async (url = 'http://localhost:3000/test', data = {}) => {
+    const getData = async (url = 'http://localhost:4000/test', data = {}) => {
         let response = await fetch(url, {
             method: 'POST',
             headers: {
@@ -24,15 +24,17 @@ function handleSubmit(event) {
                                                             The subjectivity is: ${newData.subjectivity} <br>
                                                             The polarity confidence is: ${newData.polarity_confidence} <br>
                                                             The subjectivity confidence is: ${newData.subjectivity_confidence} </div>` 
+
+
             return newData
         } catch(error) {
             console.log('error',error);
         }
     }
-    getData(undefined, {url: formText});
-    document.getElementById('name').value = "";
-}
-    document.getElementById('name').value = "";
+    getData(undefined, {url: location});
+    start()
+    document.getElementById('location').innerHTML = 'Mi trip to ' + location;
+    document.getElementById('dateres').innerHTML = 'Departing on ' + date;
 }
 
 
