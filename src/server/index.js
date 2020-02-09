@@ -44,25 +44,15 @@ app.get('/trip/:location', (req, res) => {
     console.log(location)
 
     // Geonames API
-    const geoURL = 'http://api.geonames.org/postalCodeSearchJSON?placename='
-    const geoMore = '&username='
-    const geoUser = 'ThisIsItz'
-    
 
-    axios.get(geoURL+location+geoMore+geoUser)
-    .then(response => {
-        const {lat, lng} = response.data.postalCodes[0];
-        const coordenate = {lat, lng};
-        return Promise.all([darkskyAPI(coordenate), pixabayAPI(location)])
-            .then(([temperature, photo]) => ({temperature, photo}) )
-            .then( a => console.log("object", a))
-            .catch(error => {
-                console.log(error);
-            });
-    })
-    .catch(error => {
-        console.log(error);
-    });
+    geonamesAPI(location)
+        .then(coordenate => Promise.all([darkskyAPI(coordenate), pixabayAPI(location)]))
+        .then(([temperature, photo]) => ({temperature, photo}) )
+        .then( a => console.log("object", a))
+        .catch(error => {
+            console.log(error);
+        });
+
     res.send({
         coordenate: 350124,
         temperature: '29',
@@ -78,7 +68,6 @@ function darkskyAPI(coordenate) {
         .then(response => response.data.currently.temperature )
 }
 
-
 function pixabayAPI(location) {
     const pixaURL = 'https://pixabay.com/api/?key='
     const pixaKEY = '15187864-82c579e615a12c254f00ff13d'
@@ -88,4 +77,12 @@ function pixabayAPI(location) {
         .catch(error => {
             console.log(error);
         });
+}
+
+function geonamesAPI(location){
+    const geoURL = 'http://api.geonames.org/postalCodeSearchJSON?placename='
+    const geoMore = '&username='
+    const geoUser = 'ThisIsItz'
+    return axios.get(geoURL+location+geoMore+geoUser)
+        .then (response => response.data.postalCodes[0])
 }
