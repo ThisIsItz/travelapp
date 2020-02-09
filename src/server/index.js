@@ -48,16 +48,10 @@ app.get('/trip/:location', (req, res) => {
     geonamesAPI(location)
         .then(coordenate => Promise.all([darkskyAPI(coordenate), pixabayAPI(location)]))
         .then(([temperature, photo]) => ({temperature, photo}) )
-        .then( a => console.log("object", a))
+        .then( a => res.send(a))
         .catch(error => {
             console.log(error);
         });
-
-    res.send({
-        coordenate: 350124,
-        temperature: '29',
-        locationphoto: 'esto es una url'
-    })
 });
 
 
