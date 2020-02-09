@@ -19,6 +19,7 @@ app.use(bodyParser.json());
 console.log(__dirname)
 
 
+
 app.get('/', function (req, res) {
     res.sendFile('dist/index.html')
 })
@@ -42,54 +43,26 @@ app.get('/trip/:location', (req, res) => {
     const location = req.params.location
     console.log(location)
 
-    // Pixabay API
-    const pixaURL = 'https://pixabay.com/api/?key='
-    const pixaKEY = '15187864-82c579e615a12c254f00ff13d'
-    const pixaLeft = '&image_type=photo&category=travel'
-
-    axios.get(pixaURL+pixaKEY+'&q='+location+pixaLeft)
-    .then(response => {
-        const photo = response.data.hits[0].webformatURL;
-        console.log(photo);
-        return photo;
-    })
-    .catch(error => {
-        console.log(error);
-    });
-
-
     // Geonames API
     const geoURL = 'http://api.geonames.org/postalCodeSearchJSON?placename='
     const geoMore = '&username='
     const geoUser = 'ThisIsItz'
-    const darkURL = 'https://api.darksky.net/forecast/'
-    const darkKEY = '7f25efefe036bbe11611fa167edf98ea'
+    
 
     axios.get(geoURL+location+geoMore+geoUser)
     .then(response => {
         const {lat, lng} = response.data.postalCodes[0];
-        const coordenate = {lat, lng}; 
-        console.log(coordenate);
-        return axios.get(darkURL+darkKEY+'/'+coordenate.lat+','+coordenate.lng)
-        .then(response => {
-            const {temperature} = response.data.currently
-            console.log(temperature);
-            return temperature;
-        })
-        .catch(error => {
-            console.log(error);
-        });
+        const coordenate = {lat, lng};
+        return Promise.all([darkskyAPI(coordenate), pixabayAPI(location)])
+            .then(([temperature, photo]) => ({temperature, photo}) )
+            .then( a => console.log("object", a))
+            .catch(error => {
+                console.log(error);
+            });
     })
     .catch(error => {
         console.log(error);
     });
-
-     // DarkSky API
-
-
-
-
-
     res.send({
         coordenate: 350124,
         temperature: '29',
@@ -98,3 +71,21 @@ app.get('/trip/:location', (req, res) => {
 });
 
 
+function darkskyAPI(coordenate) {
+    const darkURL = 'https://api.darksky.net/forecast/'
+    const darkKEY = '7f25efefe036bbe11611fa167edf98ea'
+    return axios.get(darkURL+darkKEY+'/'+coordenate.lat+','+coordenate.lng)
+        .then(response => response.data.currently.temperature )
+}
+
+
+function pixabayAPI(location) {
+    const pixaURL = 'https://pixabay.com/api/?key='
+    const pixaKEY = '15187864-82c579e615a12c254f00ff13d'
+    const pixaLeft = '&image_type=photo&category=travel'
+    return axios.get(pixaURL+pixaKEY+'&q='+location+pixaLeft)
+        .then( response =>  response.data.hits[0].webformatURL )
+        .catch(error => {
+            console.log(error);
+        });
+}
