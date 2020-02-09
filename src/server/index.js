@@ -42,6 +42,24 @@ app.get('/trip/:location', (req, res) => {
     const location = req.params.location
     console.log(location)
 
+    // Geonames API
+    const geoURL = 'http://api.geonames.org/postalCodeSearchJSON?placename='
+    const geoMore = '&username='
+    const geoUser = 'ThisIsItz'
+
+    axios.get(geoURL+location+geoMore+geoUser)
+    .then(response => {
+        const {lat, lng} = response.data.postalCodes[0];
+        const coordenate = {lat, lng}; 
+        console.log(coordenate);
+    })
+    .catch(error => {
+        console.log(error);
+    });
+
+
+    
+
     res.send({
         coordenate: 350124,
         temperature: '29',
