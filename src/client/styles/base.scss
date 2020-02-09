@@ -53,15 +53,14 @@ label{
     display:block;
     font-size: 27px;
     background: #395C6B;
-    width: 40%;
     margin: auto;
-    padding: 5px;
-    margin-top: 10px;
+    padding: 10px;
+    margin-bottom: 10px;
 }
 
 input{
     height: 50px;
-    width: auto;
+    width: 60%;
     margin: auto;
     text-align: center;
     background:#80A4ED;
@@ -70,6 +69,10 @@ input{
     font-family: 'Oswald', sans-serif;
     border: none;
     margin-top: 10px;
+}
+
+#submit {
+    width: 40% !important;
 }
 
 button{

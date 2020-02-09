@@ -16,11 +16,6 @@ app.use(cors());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
-var textapi = new aylien({
-    application_id: process.env.API_ID,
-    application_key: process.env.API_KEY
-    });
-
 console.log(__dirname)
 console.log(`Your API key is ${process.env.API_KEY}`);
 
@@ -34,21 +29,21 @@ app.listen(4000, function () {
     console.log('Example app listening on port 4000!')
 })
 
-app.post('/test', function (req, res) {
+app.post('/add', function (req, res) {
     console.log(req.body)
-    return textapi.sentiment({
-        url: req.body.url
-      }, function(error, response) {
-        if(error){
-            console.log(error);
-            // throw new Error(error);
-            return
-        }
-            projectData['polarity'] = response.polarity;
-            projectData['subjectivity'] = response.subjectivity;
-            projectData['polarity_confidence'] = response.polarity_confidence;
-            projectData['subjectivity_confidence'] = response.subjectivity_confidence;
-            console.log(projectData)
-            res.send(projectData);
-            }); 
-    });
+    projectData['polarity'] = res.polarity;
+    projectData['subjectivity'] = res.subjectivity;
+    projectData['polarity_confidence'] = res.polarity_confidence;
+    projectData['subjectivity_confidence'] = res.subjectivity_confidence;
+    console.log(projectData)
+    res.send(projectData);
+});
+
+app.get('/trip', (req, res) => {
+    res.send({
+        coordenate: 36.607284,
+        temperature: '29',
+        photo: 'https://cdn.pixabay.com/photo/2015/09/18/11/47/london-eye-945497_960_720.jpg'
+    })
+});
+
