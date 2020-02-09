@@ -42,6 +42,21 @@ app.get('/trip/:location', (req, res) => {
     const location = req.params.location
     console.log(location)
 
+    // Pixabay API
+    const pixaURL = 'https://pixabay.com/api/?key='
+    const pixaKEY = '15187864-82c579e615a12c254f00ff13d'
+    const pixaLeft = '&image_type=photo&category=travel'
+
+    axios.get(pixaURL+pixaKEY+'&q='+location+pixaLeft)
+    .then(response => {
+        const photo = response.data.hits[0].webformatURL;
+        console.log(photo);
+    })
+    .catch(error => {
+        console.log(error);
+    });
+
+
     // Geonames API
     const geoURL = 'http://api.geonames.org/postalCodeSearchJSON?placename='
     const geoMore = '&username='
@@ -52,11 +67,11 @@ app.get('/trip/:location', (req, res) => {
         const {lat, lng} = response.data.postalCodes[0];
         const coordenate = {lat, lng}; 
         console.log(coordenate);
+        return coordenate;
     })
     .catch(error => {
         console.log(error);
     });
-
 
     
 
