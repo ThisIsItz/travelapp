@@ -1,4 +1,4 @@
-import { start } from "./countdown"
+import { start, stopTimer } from "./countdown"
 import { checkForLocation } from "./locationChecker"
 
   // function on submit
@@ -7,6 +7,7 @@ function handleSubmit(event) {
     const locationInput = document.getElementById('name').value;
     const date = document.getElementById('date').value
     checkForLocation();
+    stopTimer();
     start();
     updateUI();
     document.getElementById('location').innerHTML = 'Mi trip to ' + locationInput.charAt(0).toUpperCase() + locationInput.slice(1);;
