@@ -32,7 +32,7 @@ const getData = async () => {
 const updateUI = async () => {
     const data = await getData();
     console.log(data)
-    document.getElementById('results').innerHTML = 'The weather will be '+ data.temperature + "&degC <br>"
+    document.getElementById('results').innerHTML = 'The weather is '+ data.temperature + "&deg"
     document.getElementById('photo').src = data.photo;
 
 }
