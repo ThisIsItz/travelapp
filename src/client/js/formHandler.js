@@ -1,32 +1,13 @@
 import { start } from "./countdown"
 import { checkForLocation } from "./locationChecker"
 
-
-const geoURL = 'http://api.geonames.org/postalCodeSearchJSON?placename='
-const geoMore = '&username='
-const geoUser = 'ThisIsItz'
-
-// geonames API
-const getGeo = async (location)=>{
-    const res = await fetch(geoURL+location+geoMore+geoUser)
-    try {
-      const data = await res.json();
-      console.log(data)
-      return data;
-    }  catch(error) {
-      console.log("error", error);
-    }
-  }
-
-
   // function on submit
-
 function handleSubmit(event) {
     event.preventDefault()
-    const location = document.getElementById('name').value;
+    const locationInput = document.getElementById('name').value;
     const date = document.getElementById('date').value
     checkForLocation();
-    getGeo(location);
+    // 
 
      // Function to post data to our server
     const postData = async (url = '/add', data = {}) => {
@@ -50,13 +31,14 @@ function handleSubmit(event) {
     
     start();
     updateUI();
-    document.getElementById('location').innerHTML = 'Mi trip to ' + location.charAt(0).toUpperCase() + location.slice(1);;
+    document.getElementById('location').innerHTML = 'Mi trip to ' + locationInput.charAt(0).toUpperCase() + locationInput.slice(1);;
     document.getElementById('dateres').innerHTML = 'Departing on ' + date.split('-').reverse().join('/');
 }
 
 const getData = async () => {
+    const locationInput = document.getElementById('name')
     try {
-        const response = await fetch('/trip');
+        const response = await fetch('/trip/'+locationInput.value);
         if(response.ok) {
             console.log("heel")
           return await response.json().then(e => e);

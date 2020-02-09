@@ -2,8 +2,8 @@ var path = require('path')
 const express = require('express')
 const cors = require('cors');
 const bodyParser = require('body-parser');
-var aylien = require("aylien_textapi");
 const dotenv = require('dotenv');
+const axios = require('axios');
 dotenv.config({path: '../../.env'});
 
 let projectData = {};
@@ -17,7 +17,6 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
 console.log(__dirname)
-console.log(`Your API key is ${process.env.API_KEY}`);
 
 
 app.get('/', function (req, res) {
@@ -39,11 +38,15 @@ app.post('/add', function (req, res) {
     res.send(projectData);
 });
 
-app.get('/trip', (req, res) => {
+app.get('/trip/:location', (req, res) => {
+    const location = req.params.location
+    console.log(location)
+
     res.send({
-        coordenate: 36.607284,
+        coordenate: 350124,
         temperature: '29',
-        photo: 'https://cdn.pixabay.com/photo/2015/09/18/11/47/london-eye-945497_960_720.jpg'
+        locationphoto: 'esto es una url'
     })
 });
+
 
