@@ -12,6 +12,7 @@ function handleSubmit(event) {
     updateUI();
     document.getElementById('location').innerHTML = 'Mi trip to ' + locationInput.charAt(0).toUpperCase() + locationInput.slice(1);;
     document.getElementById('dateres').innerHTML = 'Departing on ' + date.split('-').reverse().join('/');
+    document.getElementById('name').value = "";
 }
 
 const getData = async () => {
