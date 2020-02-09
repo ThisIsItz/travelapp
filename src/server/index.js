@@ -51,6 +51,7 @@ app.get('/trip/:location', (req, res) => {
     .then(response => {
         const photo = response.data.hits[0].webformatURL;
         console.log(photo);
+        return photo;
     })
     .catch(error => {
         console.log(error);
@@ -61,19 +62,33 @@ app.get('/trip/:location', (req, res) => {
     const geoURL = 'http://api.geonames.org/postalCodeSearchJSON?placename='
     const geoMore = '&username='
     const geoUser = 'ThisIsItz'
+    const darkURL = 'https://api.darksky.net/forecast/'
+    const darkKEY = '7f25efefe036bbe11611fa167edf98ea'
 
     axios.get(geoURL+location+geoMore+geoUser)
     .then(response => {
         const {lat, lng} = response.data.postalCodes[0];
         const coordenate = {lat, lng}; 
         console.log(coordenate);
-        return coordenate;
+        return axios.get(darkURL+darkKEY+'/'+coordenate.lat+','+coordenate.lng)
+        .then(response => {
+            const {temperature} = response.data.currently
+            console.log(temperature);
+            return temperature;
+        })
+        .catch(error => {
+            console.log(error);
+        });
     })
     .catch(error => {
         console.log(error);
     });
 
-    
+     // DarkSky API
+
+
+
+
 
     res.send({
         coordenate: 350124,
