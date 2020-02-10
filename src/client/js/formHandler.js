@@ -6,6 +6,9 @@ function handleSubmit(event) {
     event.preventDefault()
     const locationInput = document.getElementById('name').value;
     const date = document.getElementById('date').value
+    const date2 = document.getElementById('date2').value
+    var time = Math.abs(new Date(date2).getTime() - new Date(date).getTime());;
+    var diffDays = Math.ceil(time / (1000 * 3600 * 24));
     checkForLocation();
     stopTimer();
     start();
@@ -13,6 +16,7 @@ function handleSubmit(event) {
     document.getElementById('location').innerHTML = 'Mi trip to ' + locationInput.charAt(0).toUpperCase() + locationInput.slice(1);;
     document.getElementById('dateres').innerHTML = 'Departing on ' + date.split('-').reverse().join('/');
     document.getElementById('name').value = "";
+    document.getElementById('datesubs').innerHTML = "You will stay for " + diffDays + " days";
 }
 
 const getData = async () => {

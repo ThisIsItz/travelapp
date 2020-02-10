@@ -4,7 +4,6 @@ body{
 }
 
 #app{
-    display: grid;
     background: #BCD3F2;
     color:black;
     justify-content: center;
@@ -26,18 +25,6 @@ body{
 
 #entryHolder{
     font-size: 30px;
-}
-
-#date{
-    margin-top: 10px;
-}
-
-#temp{
-    margin-top: 10px;
-}
-
-#content{
-    margin-top: 10px;
 }
 
 .headline {
