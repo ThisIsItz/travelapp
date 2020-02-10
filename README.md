@@ -2,7 +2,15 @@
 
 This is the last project in Front-end Udacity Nanodegree.
 
-The objective in this project is to build a travel application that uses the information incoming from the user (location and date) to show him some information about the trip. For this project I've used three APIs (Geonames, DarkSkys and Pixabay).
+The objective in this project is to build a travel application that uses the information incoming from the user (location and date) to show him some information about the trip.
+
+The app shows the following information:
+- A photo of the city.
+- The temperature of that city.
+- How many days is your trip away.
+- How many days is going to take the trip.
+
+For this project I've used three APIs (Geonames, DarkSkys and Pixabay).
 
 ## How to start
 
