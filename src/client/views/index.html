@@ -1,39 +1,44 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
-<title>Travel App</title>
-<link rel="shortcut icon" href="https://img.icons8.com/android/24/000000/partly-cloudy-day.png">
+  <head>
+    <meta charset="UTF-8">
+    <title>Travel App</title>
+    <link rel="shortcut icon" href="https://img.icons8.com/android/24/000000/partly-cloudy-day.png">
 
-<link href="https://fonts.googleapis.com/css?family=Oswald:400,600,700|Ranga:400,700&display=swap" rel="stylesheet">
-</head>
+    <link href="https://fonts.googleapis.com/css?family=Oswald:400,600,700|Ranga:400,700&display=swap" rel="stylesheet">
+  </head>
  <body>
-<div id = "app">
-  <div class ="holder headline">
-    <div>Travel App</div>
-    <div><img id="photo" src="https://img.icons8.com/clouds/100/000000/airplane-take-off.png"></div>
-  </div>
-  <div class ="holder zip">
-    <form class="" onsubmit="Client.handleSubmit(event)">
-      <label id="title">My trip</label>
-      <div id="location"></div>
-      <div id="dateres"></div>
-      <div id="countdown"></div>
-      <div id="datesubs"> </div>
-      <div id="results"></div>
-        <input id="name" type="text" name="input" value="" placeholder="Enter location">
-        <p>Departure date</p>
-        <input id="date" type="date">
-        <p>Return date</p>
-        <input id="date2" type="date">
-        <p></p>
-        <input id="submit" type="submit" name="" value="Search">
-      </form>
-  </div>
-  <div class ="holder entry">
-  </div>
-  </div>
-  </div>
-
+    <div id = "app">
+      <div class ="holder headline">
+        <div>Travel App</div>
+        <div><img id="photo" src="https://img.icons8.com/clouds/100/000000/airplane-take-off.png"></div>
+      </div>
+      <div class ="holder zip">
+        <form class="" onsubmit="Client.handleSubmit(event)">
+          <label id="title">My trip</label>
+          <div id="location"></div>
+          <div id="dateres"></div>
+          <div id="countdown"></div>
+          <div id="datesubs"> </div>
+          <div id="results"></div>
+          <input id="name" type="text" name="input" value="" placeholder="Enter location">
+          <p>Departure date</p>
+            <input id="date" type="date">
+          <p>Return date</p>
+            <input id="date2" type="date">
+          <p></p>
+            <input id="submit" type="submit" name="" value="Search">
+        </form>
+      </div>
+    </div>
+  <script>
+    // Check that service workers are supported
+    if ('serviceWorker' in navigator) {
+        // Use the window load event to keep the page load performant
+        window.addEventListener('load', () => {
+            navigator.serviceWorker.register('/service-worker.js');
+        });
+    }
+</script>
 </body>
 </html>
