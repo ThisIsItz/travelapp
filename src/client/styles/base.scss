@@ -36,18 +36,23 @@ body{
 }
 
 /*  Basic Styling To Override Default For Basic HTML Elements */
-label{
+#title{
     display:block;
     font-size: 27px;
     background: #395C6B;
     margin: auto;
     padding: 10px;
     margin-bottom: 10px;
+    width: 50%;
+}
+
+label {
+    margin-top: 50px;
 }
 
 input{
     height: 50px;
-    width: 60%;
+    width: 30%;
     margin: auto;
     text-align: center;
     background:#80A4ED;
@@ -55,11 +60,20 @@ input{
     font-size: 20px;
     font-family: 'Oswald', sans-serif;
     border: none;
-    margin-top: 10px;
+    margin-top: 15px;
 }
 
 h1{
     font-size: 36px;
+}
+
+p{
+    margin-top: 20px;
+    margin-bottom: 0px;
+}
+
+#submit {
+    margin-bottom: 30px;
 }
 
 textarea{
