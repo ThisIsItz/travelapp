@@ -1,12 +1,11 @@
-var path = require('path')
 const express = require('express')
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const dotenv = require('dotenv');
 const axios = require('axios');
-dotenv.config({path: '../../.env'});
+dotenv.config({path: '.env'});
 
-let projectData = {};
+console.log(process.env.GEO_USER)
 
 const app = express()
 
@@ -47,14 +46,14 @@ app.get('/trip/:location', (req, res) => {
 
 function darkskyAPI(coordenate) {
     const darkURL = 'https://api.darksky.net/forecast/'
-    const darkKEY = '7f25efefe036bbe11611fa167edf98ea'
+    const darkKEY = process.env.DARKAPI_KEY
     return axios.get(darkURL+darkKEY+'/'+coordenate.lat+','+coordenate.lng)
         .then(response => response.data.currently.temperature )
 }
 
 function pixabayAPI(location) {
     const pixaURL = 'https://pixabay.com/api/?key='
-    const pixaKEY = '15187864-82c579e615a12c254f00ff13d'
+    const pixaKEY = process.env.PIXA_KEY
     const pixaLeft = '&image_type=photo&category=travel'
     return axios.get(pixaURL+pixaKEY+'&q='+location+pixaLeft)
         .then( response =>  response.data.hits[0].webformatURL )
@@ -66,7 +65,7 @@ function pixabayAPI(location) {
 function geonamesAPI(location){
     const geoURL = 'http://api.geonames.org/postalCodeSearchJSON?placename='
     const geoMore = '&username='
-    const geoUser = 'ThisIsItz'
+    const geoUser = process.env.GEO_USER
     return axios.get(geoURL+location+geoMore+geoUser)
         .then (response => response.data.postalCodes[0])
 }
