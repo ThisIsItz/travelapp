@@ -11,3 +11,11 @@ The objective in this project is to build a travel application that uses the inf
 - ```npm install```
 - ```npm start``` to start the server
 - ````npm run build-dev``` to star the app
+
+# Skills that I have to use
+
+- Javascript
+- Node.js
+- Express
+- Webpack
+- Git
