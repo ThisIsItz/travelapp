@@ -22,6 +22,10 @@ The app shows the following information:
 - ```npm start``` to start the server
 - ```npm run build-dev``` to start the app
 
+## Test
+
+Installed JEST and created two tests on ./src/js files to check input validation functionality and async function. To test the app just run ```npm test```
+
 ## Skills that I have to use
 
 - Javascript
