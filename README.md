@@ -28,6 +28,7 @@ The app shows the following information:
 - Node.js
 - Express
 - Webpack
+- Sass
 - Git
 
 ## Built With
