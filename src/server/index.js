@@ -5,8 +5,6 @@ const dotenv = require('dotenv');
 const axios = require('axios');
 dotenv.config({path: '.env'});
 
-console.log(process.env.GEO_USER)
-
 const app = express()
 
 app.use(express.static('dist'))
@@ -31,8 +29,6 @@ app.listen(4000, function () {
 app.get('/trip/:location', (req, res) => {
     const location = req.params.location
     console.log(location)
-
-    // Geonames API
 
     geonamesAPI(location)
         .then(coordenate => Promise.all([darkskyAPI(coordenate), pixabayAPI(location)]))
