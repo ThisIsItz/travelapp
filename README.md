@@ -13,6 +13,7 @@ The app shows the following information:
 - How many days is going to take the trip.
 
 ![Travel App Results](./img/travelappresults.png)
+
 *Travel Results*
 
 
