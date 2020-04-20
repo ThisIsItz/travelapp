@@ -2,7 +2,7 @@
 
 This is the last project in Front-end Udacity Nanodegree.
 
-The objective of this project is to build a travel application that uses the information incoming from the user (location and date) to shows some information about the trip.
+The objective for this project is to build a travel application that uses the information incoming from the user (location and date) to shows some information about the trip.
 
 ![Travel App](./img/travelapp.png)
 
